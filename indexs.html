@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>speech to text</title>
+  <style>
+     .container{
+         background-color: black;
+         color: white;
+         width: 500px;
+         height: 500px;
+         text-align: center;
+         margin: auto;
+         display:none;
+         
+     }
+     .close{
+         margin-left: 450px;
+     }
+  </style>
+</head>
+<body>
+<button class="btn" onclick="document.getElementById('container').style.display='block'">Speech</button>
+  <div class="container" id="container">
+      <h1 onclick="document.getElementById('container').style.display='none'" class="close"><span> &#x2715;</span> </h1>
+      <h1>Say something!</h1>
+      <img class="mic" width="300px" heigth="400px" onclick="start1()" src="C:\Users\JOHN\Downloads\mic.png"/>  
+      <h3 id="res"> </h3>
+  </div>
+  <p id="output"></p>
+  <script>
+      const reg = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const speech = new reg();
+     // console.log(speech)
+     function start1(){
+         speech.start()
+     speech.onresult= function (e){
+
+        document.getElementById('output').innerText= "Your said :  "+e.results[e.resultIndex][0].transcript;
+     }
+     speech.onend=function (){
+          document.getElementById("res").innerText="If you want to talk again click the mic icon";
+     }
+    }
+  </script>
+</body>
+</html>
